@@ -1,0 +1,246 @@
+@charset "UTF-8";
+:root{
+  --bg: #eaf2fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #111827;
+  --line: #e5e7eb;
+  --input: #eef5ff;
+  --primary: #2f7d1b;
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Topbar */
+.topbar{
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+.topbar-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.navlinks{
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.navlink{
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  padding: 10px 2px;
+  border-bottom: 3px solid transparent;
+}
+.navlink.active{
+  color: #111827;
+  border-bottom-color: #f59e0b;
+  font-weight: 600;
+}
+
+.topbar-actions{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.icon-btn{
+  position: relative;
+  border: none;
+  background: #f3f4f6;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.icon{ font-size: 16px; }
+.badge{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+}
+.badge-green{ background: #22c55e; }
+
+.avatar{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #1f2937;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+/* Page */
+.page{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.breadcrumb-wrap{
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 14px;
+}
+.breadcrumb{
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Card */
+.card{
+  max-width: 720px;
+  margin: 26px auto 60px;
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 34px 38px 36px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.card-head{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.book-icon{ font-size: 24px; }
+h1{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+.subtitle{
+  margin: 0 0 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Form */
+.form{
+  width: 100%;
+  display: grid;
+  gap: 14px;
+}
+
+.field label{
+  display: block;
+  font-size: 13px;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.control input,
+.control select,
+.control textarea{
+  width: 100%;
+  border: 1px solid transparent;
+  background: var(--input);
+  padding: 12px 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  color: #111827;
+}
+
+.control input[readonly]{
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+.control textarea{
+  resize: vertical;
+  min-height: 110px;
+}
+
+.control input:focus,
+.control select:focus,
+.control textarea:focus{
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.has-icon{ position: relative; }
+.end-icon{
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.amount-field{ max-width: 260px; }
+
+.hint{
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Button */
+.btn{
+  margin-top: 6px;
+  width: 190px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(47, 125, 27, 0.18);
+}
+.btn:active{ transform: translateY(1px); }
+
+/* Responsive */
+@media (max-width: 760px){
+  .topbar-inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card{ padding: 24px 18px 22px; }
+  .grid-2{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .amount-field{ max-width: 100%; }
+}

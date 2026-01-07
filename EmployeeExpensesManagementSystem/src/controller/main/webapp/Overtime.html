@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Claim</title>
+  <link rel="stylesheet" href="CSS/Overtime.css"/>
+</head>
+<body>
+  <!-- Top Nav -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#" class="navlink">Dashboard</a>
+        <a href="#" class="navlink">Account Profile</a>
+        <a href="#" class="navlink active">Create Claim</a>
+      </nav>
+
+      <div class="topbar-actions" aria-label="Actions">
+        <button class="icon-btn" aria-label="Notifications">
+          <span class="icon">🔔</span>
+          <span class="badge" aria-label="Unread notifications">3</span>
+        </button>
+        <button class="icon-btn" aria-label="Messages">
+          <span class="icon">✉️</span>
+          <span class="badge badge-green" aria-label="Unread messages">1</span>
+        </button>
+        <div class="avatar" aria-label="User profile">👤</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page -->
+  <main class="page">
+    <section class="breadcrumb-wrap">
+      <div class="breadcrumb">Dashboard &gt; Apply for Claim</div>
+    </section>
+
+    <section class="card" aria-label="Claim Form">
+      <div class="card-head">
+        <div class="book-icon" aria-hidden="true">📘</div>
+        <h1>Claim Form</h1>
+      </div>
+      <p class="subtitle">Fill the required fields below to apply for claim</p>
+
+      <form class="form" action="#" method="post">
+        <!-- Claim Type -->
+        <div class="field">
+          <label for="claimType">Claim Type</label>
+          <div class="control">
+            <select id="claimType" name="claimType" required>
+              <option value="" disabled selected>Select claim type</option>
+              <option value="overtime">OverTime</option>
+              <option value="travel">Travel</option>
+              <option value="medical">Medical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Employee ID + Name -->
+        <div class="grid-2">
+          <div class="field">
+            <label for="employeeId">Employee ID</label>
+            <div class="control">
+              <input id="employeeId" name="employeeId" type="text" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <div class="control">
+              <input id="name" name="name" type="text" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Date + End Date -->
+        <div class="grid-2">
+          <div class="field">
+            <label for="startDate">Start Date</label>
+            <div class="control has-icon">
+              <input id="startDate" name="startDate" type="date" required />
+              <span class="end-icon" aria-hidden="true">📅</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="endDate">End Date</label>
+            <div class="control has-icon">
+              <input id="endDate" name="endDate" type="date" required />
+              <span class="end-icon" aria-hidden="true">📅</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="field">
+          <label for="hours">Hours</label>
+          <div class="control">
+            <select id="hours" name="hours" required>
+              <option value="" disabled selected>Select hours</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <small class="hint">Rate: <b>RM 10</b> per hour</small>
+        </div>
+
+        <!-- Description -->
+        <div class="field">
+          <label for="description">Claim Description</label>
+          <div class="control">
+            <textarea id="description" name="description" rows="4" required></textarea>
+          </div>
+        </div>
+
+        <!-- Amount (Auto Calculated) -->
+        <div class="field amount-field">
+          <label for="amount">Amount (RM)</label>
+          <div class="control">
+            <input id="amount" name="amount" type="text" value="0.00" readonly />
+          </div>
+        </div>
+
+        <!-- Save -->
+        <button class="btn" type="submit">Save</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+  // Rate: 1 hour = RM 10
+  const RATE_PER_HOUR = 10;
+
+  const hoursEl = document.getElementById("hours");
+  const amountEl = document.getElementById("amount");
+  const startDateEl = document.getElementById("startDate");
+  const endDateEl = document.getElementById("endDate");
+
+  function getInclusiveDays(startStr, endStr) {
+    if (!startStr || !endStr) return 0;
+
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+
+    // Normalize time to avoid timezone/daylight issues
+    start.setHours(0, 0, 0, 0);
+    end.setHours(0, 0, 0, 0);
+
+    if (end < start) return 0;
+
+    const diffMs = end - start;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1; // +1 makes it inclusive
+    return diffDays;
+  }
+
+  function updateAmount() {
+    const hours = Number(hoursEl.value || 0);
+    const days = getInclusiveDays(startDateEl.value, endDateEl.value);
+
+    const amount = days * hours * RATE_PER_HOUR;
+    amountEl.value = amount.toFixed(2);
+  }
+
+  hoursEl.addEventListener("change", updateAmount);
+  startDateEl.addEventListener("change", updateAmount);
+  endDateEl.addEventListener("change", updateAmount);
+
+  updateAmount();
+</script>
+
+</body>
+</html>

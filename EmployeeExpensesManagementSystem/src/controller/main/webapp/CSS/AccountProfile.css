@@ -1,0 +1,112 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    background-color: #eef5fb;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #0d1b3d, #08132c);
+    color: white;
+    min-height: 100vh;
+    padding: 25px 20px;
+    position: relative;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.user-info {
+    margin-bottom: 35px;
+}
+
+.user-info h3 {
+    margin: 10px 0 5px;
+}
+
+.user-info p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu li.active {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+}
+
+.menu li:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.logout {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    width: calc(100% - 40px);
+    padding: 12px;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===== Main Content ===== */
+.main {
+    flex: 1;
+    padding: 40px 50px;
+}
+
+.main h1 {
+    margin-bottom: 25px;
+}
+
+/* ===== Card ===== */
+.card {
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    max-width: 1000px;
+}
+
+.card h2 {
+    margin-bottom: 20px;
+}
+
+.profile-header h3 {
+    margin: 0;
+}
+
+.profile-header p {
+    margin-top: 4px;
+    color: #555;
+}
+
+/* ===== Details Layout ===== */
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-
